@@ -23,7 +23,10 @@
 /*       // ... to declare which easing to use.              
 /*       .attrWithEase('opacity', 0.3, 'quad-out')
 /*
-/*       // Or, use a custom easing function
+/*       // Of course, you can use a function for the value
+/*       .attrWithEase('opacity', function (d, i) { return i * 5; }, 'quad-out')
+/*
+/*       // And even a custom easing function
 /*       .styleWithEase('top', '140px', function (t) { return t * Math.random(); })
 /*
 /* Author: [Reed](https://github.com/reedspool)
@@ -45,26 +48,32 @@ d3.transition.prototype.styleWithEase =
     }
 
     this.styleTween(attribute, function (d, i, v0) {
-      var interpolator = d3.interpolate(v0, value);
+      // Value might be a fn, so need to be evaluated in context
+      var interpolator = d3.interpolate(v0, typeof value == 'function' 
+                                            ? value.call(this, d, i)
+                                            : value);
 
       return function (t) {
         return interpolator(ease(t));
       }
-    })
+    }, priority)
 
     return this;
   }
 
 d3.transition.prototype.attrWithEase = 
   function (attribute, value, ease) {
-
+  
     // Ease might be a string, requesting a d3 easing
     if (typeof ease == 'string') {  
       ease = d3.ease(ease)
     }
 
     this.attrTween(attribute, function (d, i, v0) {
-      var interpolator = d3.interpolate(v0, value);
+      // Value might be a fn, so need to be evaluated in context
+      var interpolator = d3.interpolate(v0, typeof value == 'function' 
+                                            ? value.call(this, d, i)
+                                            : value);
 
       return function (t) {
         return interpolator(ease(t));
