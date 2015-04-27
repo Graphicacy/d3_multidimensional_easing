@@ -2,36 +2,13 @@
 /*
 /* Style, with Ease!
 /*
-/*   d3.transition.prototype.styleWithEase
-/*   d3.transition.prototype.attrWithEase
-/*
 /*   Plug-in to use different easing for different dimensions of a transition.
 /*
-/*   Usage:
+/* See the [github repository](https://github.com/Graphicacy/d3_multidimensional_easing)
 /*
-/*   d3.select('.ball')                        
-/*     .transition()                           
-/*     .duration(2000)
-/*
-/*     // REQUIRED: Start with linear easing.                 
-/*     .ease('linear')
-/*       .style('transform', 'rotate(360deg)') 
-/*
-/*       // Just like .style() and .attr(), with one extra parameter...            
-/*       .styleWithEase('left', '400px', 'quad-in')
-/*
-/*       // ... to declare which easing to use.              
-/*       .attrWithEase('opacity', 0.3, 'quad-out')
-/*
-/*       // Of course, you can use a function for the value
-/*       .attrWithEase('opacity', function (d, i) { return i * 5; }, 'quad-out')
-/*
-/*       // And even a custom easing function
-/*       .styleWithEase('top', '140px', function (t) { return t * Math.random(); })
-/*
-/* Author: [Reed](https://github.com/reedspool)
+/* Author, [Reed](https://github.com/reedspool)
 /*          
-/* Made by [Graphicacy](http://www.graphicacy.com)
+/* Made By [Graphicacy](http://www.graphicacy.com)
 /*
 /*- -~- -*/
 d3.transition.prototype.styleWithEase = 
